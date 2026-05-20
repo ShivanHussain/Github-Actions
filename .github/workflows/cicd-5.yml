@@ -1,0 +1,42 @@
+name: CICD-5
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: This is the environment value where workflow runs
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+
+jobs:
+
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        run: echo "code clone from github"
+  build:
+    needs: [code]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Docker Container
+        run: echo "Build docker conatiner"
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test the container
+        run: echo "Testing the container"
+  deploy:
+    if: inputs.environment == 'dev'
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying container
+        run: echo "Docker compose deploy container"
