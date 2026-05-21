@@ -30,7 +30,7 @@ jobs:
 
             #Static code artifacts
             - name: Upload static code
-              uses: actions/upload-pages-artifact@
+              uses: actions/upload-pages-artifact@v4
               with:
                 path: "."
 
