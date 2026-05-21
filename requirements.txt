@@ -1,0 +1,10 @@
+flake8
+Flask
+MarkupSafe
+Werkzeug
+itsdangerous
+psutil
+plotly
+tenacity
+pytest
+pytest-mock
