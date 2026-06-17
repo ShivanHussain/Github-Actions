@@ -2,7 +2,7 @@ FROM python:3.13-alpine
 
 WORKDIR /app
 
-RUN apk update && apk upgrade --no-cache && pip install --upgrade pip
+RUN apk update && apk upgrade --no-cache
 
 COPY requirements.txt .
 
@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5001
 
-CMD ["python","app.py"]
+CMD ["python", "app.py"]
