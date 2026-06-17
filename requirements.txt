@@ -8,3 +8,4 @@ plotly
 tenacity
 pytest
 pytest-mock
+bandit
