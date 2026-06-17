@@ -1,12 +1,11 @@
-name:  Docker build & Push
+name: Image scan
 
 on:
-  workflow_call:
-
+    workflow_call:
 
 jobs:
 
-    build-and-push:
+    image_scan:
         runs-on: ubuntu-latest
 
         steps:
@@ -14,16 +13,15 @@ jobs:
               uses: actions/checkout@v4
 
 
+            
             - name: Login to docker hub
               uses: docker/login-action@v3
               with:
                 username: ${{ vars.DOCKERHUB_USER }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
-            - name: Build and push to docker hub
-              uses: docker/build-push-action@v6
+            - name: Trivy vulnerability scan
+              uses: aquasecurity/trivy-action@v0.36.0
               with:
-                context: .
-                push: true
-                tags: ${{ vars.DOCKERHUB_USER }}/github-action-app:latest
+                severity: 'CRITICAL'
+                exit-code: '1'
