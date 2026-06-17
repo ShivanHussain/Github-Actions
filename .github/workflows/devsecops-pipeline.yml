@@ -26,3 +26,10 @@ jobs:
         secrets: inherit
 
 
+    trivy:
+        needs: ["build"]
+        uses: ./.github/workflows/image-scan.yml
+        secrets: inherit
+        
+
+
