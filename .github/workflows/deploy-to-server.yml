@@ -27,6 +27,9 @@ jobs:
                 script: |
                  "-----Starting deployment-----"
                  mkdir -p devops
+                 sudo apt-get update -y
+                 sudo apt-get install docker.io docker-compose-v2 -y
+                 sudo usermod -aG docker $USER && newgrp docker
 
 
             - name: copy docker compose file
@@ -47,7 +50,4 @@ jobs:
                 key: ${{ secrets.EC2_SSH_KEY }}
                 script: |
                  "-----Deploying App-----"
-                 sudo apt-get update -y
-                 sudo apt-get install docker.io docker-compose-v2 -y
-                 sudo usermod -aG docker $USER && newgrp docker
                  cd ~/devops && docker compose down && docker compose up -d --build --force-recreate --pull always
