@@ -38,4 +38,3 @@ def index():
     except Exception as e:
         print(e)
         return "Error loading dashboard", 500
-
