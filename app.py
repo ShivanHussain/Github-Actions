@@ -39,6 +39,3 @@ def index():
         print(e)
         return "Error loading dashboard", 500
 
-
-if __name__ == "__main__":
-    app.run(port=5001)

@@ -9,3 +9,4 @@ tenacity
 pytest
 pytest-mock
 bandit
+gunicorn
